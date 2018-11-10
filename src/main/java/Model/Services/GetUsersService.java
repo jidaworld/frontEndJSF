@@ -1,30 +1,30 @@
 package Model.Services;
 
-import Model.UserViewModel;
+import Model.RequestManager;
+import Model.ResponseObjects.GetUserResponseObject;
+import Model.ViewModels.UserViewModel;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 public class GetUsersService {
 
-    HttpURLConnection http = null;
-
     public List<UserViewModel> getUsers(String name){
-        try{
-            URL url = new URL("http://Localhost:8080/getusers");
-            http = (HttpURLConnection) url.openConnection();
 
+        try (RequestManager.Request request = RequestManager.request()){
+            request.executePost("Http://localhost:8080/getusers", new GetUsersObj(name));
+            return request.response(GetUserResponseObject.class).getList();
         } catch (IOException e) {
-
-        } finally {
-            if(http != null) {
-                http.disconnect();
-            }
+            e.printStackTrace();
         }
+        return null;
+    }
 
-       return null;
+    private static class GetUsersObj{
+        private String name;
+
+        public GetUsersObj(String name) {
+            this.name = name;
+        }
     }
 }

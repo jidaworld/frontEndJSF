@@ -1,7 +1,7 @@
 package Beans;
 
-import Model.UserViewModel;
 import Model.Services.*;
+import Model.ViewModels.UserViewModel;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -30,14 +30,14 @@ public class UserBean implements Serializable {
     }
 
     public void getUsers(){
-        System.out.println("hello");
         getUsers = new GetUsersService();
-        //list = getUsers.getUsers(searchName);
-        try {
+        list = getUsers.getUsers(searchName);
+        System.out.println(list);
+        /*try {
             FacesContext.getCurrentInstance().getExternalContext().dispatch("/welcome.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public String getSearchName() {
