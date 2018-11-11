@@ -31,13 +31,12 @@ public class UserBean implements Serializable {
 
     public void getUsers(){
         getUsers = new GetUsersService();
-        list = getUsers.getUsers(searchName);
-        System.out.println(list);
-        /*try {
+        setList(getUsers.getUsers(searchName));
+        try {
             FacesContext.getCurrentInstance().getExternalContext().dispatch("/welcome.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public String getSearchName() {

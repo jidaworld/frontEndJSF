@@ -27,7 +27,6 @@ public class RequestManager {
 
     public static Request request(){
 
-
         return new Request();
     }
 

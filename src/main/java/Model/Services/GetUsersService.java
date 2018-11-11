@@ -23,7 +23,7 @@ public class GetUsersService {
     private static class GetUsersObj{
         private String name;
 
-        public GetUsersObj(String name) {
+        private GetUsersObj(String name) {
             this.name = name;
         }
     }

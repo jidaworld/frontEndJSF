@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="frontend_jsf" target="1.8" />
+      <module name="frontend_jsf" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
