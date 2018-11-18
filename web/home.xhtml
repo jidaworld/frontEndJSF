@@ -29,5 +29,28 @@
         <h:inputText value="#{userBean.searchName}"></h:inputText>
         <h:commandButton value="Search" action="#{userBean.getUsers}"></h:commandButton>
     </h:form>
+    <h:form>
+        add Feed Message
+        <h:inputText value="#{feedMessageBean.email}"></h:inputText> <br></br>
+        <h:inputTextarea value="#{feedMessageBean.message}"></h:inputTextarea> <br></br>
+        <h:commandButton value="Post" action="#{feedMessageBean.sendFeedMessages}"></h:commandButton>
+    </h:form>
+
+    <h:form>
+        <h:commandButton value="Get" action="#{feedMessageBean.getFeedMessages}"></h:commandButton>
+    </h:form>
+
+    <h:dataTable value="#{feedMessageBean.list}" var="message">
+        <h:column>
+            <h:link value="#{message.name} " outcome="message">
+            </h:link>
+            <h:link value="#{message.lastname}" outcome="message">
+            </h:link>
+            <h:link value="#{message.date}" outcome="message">
+            </h:link>
+            <h:link value="#{message.message}" outcome="message">
+            </h:link>
+        </h:column>
+    </h:dataTable>
 </h:body>
 </html>
