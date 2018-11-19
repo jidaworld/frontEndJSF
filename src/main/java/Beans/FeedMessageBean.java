@@ -15,8 +15,8 @@ import java.util.List;
 public class FeedMessageBean implements Serializable {
 
     private List<FeedMessageViewModel> list;
-    private String message = "";
-    private String email = "kaspe@kth.se";
+    private String message;
+    private String email;
     private AddFeedMessageService addMessageService;
     private GetFeedMessageService getMessageService;
 
@@ -27,7 +27,7 @@ public class FeedMessageBean implements Serializable {
 
     public void getFeedMessages(){
         getMessageService = new GetFeedMessageService();
-        list = getMessageService.getFeedMessages("kaspe@kth.se3");
+        list = getMessageService.getFeedMessages(email);
     }
 
     public List<FeedMessageViewModel> getList() {
@@ -54,11 +54,4 @@ public class FeedMessageBean implements Serializable {
         this.email = email;
     }
 
-    public AddFeedMessageService getAddMessageService() {
-        return addMessageService;
-    }
-
-    public void setAddMessageService(AddFeedMessageService addMessageService) {
-        this.addMessageService = addMessageService;
-    }
 }
