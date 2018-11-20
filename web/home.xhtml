@@ -17,8 +17,10 @@
                 <div class="col-6">
                     <h:form>
                         <h:inputTextarea styleClass="form-control" value="#{feedMessageBean.message}"/>
-                        <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Share"
-                                         action="#{feedMessageBean.sendFeedMessages(userBean.email)}"/>
+                        <div class="text-right">
+                            <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Share"
+                                             action="#{feedMessageBean.sendFeedMessages(userBean.email)}"/>
+                        </div>
                     </h:form>
                 </div>
                 <div class="col-4">
