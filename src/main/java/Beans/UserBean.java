@@ -5,6 +5,7 @@ import Model.ViewModels.UserViewModel;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.html.HtmlDataTable;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class UserBean implements Serializable {
     private String LastName;
     private AddUserService addUser;
     private GetUsersService getUsers;
-    private String searchName;
+    private String searchName = "";
     private List<UserViewModel> list;
 
     public void addUser() {
@@ -32,11 +33,6 @@ public class UserBean implements Serializable {
     public void getUsers(){
         getUsers = new GetUsersService();
         setList(getUsers.getUsers(searchName));
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().dispatch("/welcome.xhtml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public String getSearchName() {

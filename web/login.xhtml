@@ -12,7 +12,7 @@
 <h:body>
     <div class="container">
         <ui:include src="/WEB-INF/navbar.xhtml"/>
-        <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
+        <h2>Register/login</h2>
         <div class="row">
             <div class="col-6">
                 <h4>Register a new account</h4>
@@ -26,22 +26,22 @@
                 <div class="col-6">
                     <h:form>
                         Username
-                        <br></br>
+                        <br/>
                         <h:inputText styleClass="form-control" value="#{userBean.userName}"/>
                         Password
-                        <br></br>
+                        <br/>
                         <h:inputSecret styleClass="form-control" value="#{userBean.password}"/>
                         Email
-                        <br></br>
+                        <br/>
                         <h:inputText styleClass="form-control" value="#{userBean.email}"/>
                         FirstName
-                        <br></br>
+                        <br/>
                         <h:inputText styleClass="form-control" value="#{userBean.name}"/>
                         LastName
-                        <br></br>
-                        <h:inputText styleClass="form-control" value="#{userBean.lastName}"></h:inputText>
+                        <br/>
+                        <h:inputText styleClass="form-control" value="#{userBean.lastName}"/>
                         <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Register"
-                                         action="#{userBean.addUser}"></h:commandButton>
+                                         action="#{userBean.addUser}"/>
                     </h:form>
                 </div>
             </div>
@@ -49,15 +49,15 @@
             <div class="col-3">
                 <h:form>
                     Username
-                    <br></br>
+                    <br/>
                     <h:inputText styleClass="form-control" value="#{userBean.userName}"/>
                     Password
-                    <br></br>
+                    <br/>
                     <h:inputSecret styleClass="form-control" value="#{userBean.password}"/>
                     <!--Put in login bean button function-->
                     <div class="text-right">
                         <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Login"
-                                         action="#{userBean.addUser}"></h:commandButton>
+                                         action="#{userBean.addUser}"/>
                     </div>
                 </h:form>
             </div>
@@ -65,18 +65,18 @@
 
         <h:form>
             Search Name
-            <h:inputText value="#{userBean.searchName}"></h:inputText>
-            <h:commandButton value="Search" action="#{userBean.getUsers}"></h:commandButton>
+            <h:inputText value="#{userBean.searchName}"/>
+            <h:commandButton value="Search" action="#{userBean.getUsers}"/>
         </h:form>
         <h:form>
             add Feed Message
-            <h:inputText value="#{feedMessageBean.email}"></h:inputText> <br></br>
-            <h:inputTextarea value="#{feedMessageBean.message}"></h:inputTextarea> <br></br>
-            <h:commandButton value="Post" action="#{feedMessageBean.sendFeedMessages}"></h:commandButton>
+            <h:inputText value="#{feedMessageBean.email}"/> <br/>
+            <h:inputTextarea value="#{feedMessageBean.message}"/> <br/>
+            <h:commandButton value="Post" action="#{feedMessageBean.sendFeedMessages}"/>
         </h:form>
 
         <h:form>
-            <h:commandButton value="Get" action="#{feedMessageBean.getFeedMessages}"></h:commandButton>
+            <h:commandButton value="Get" action="#{feedMessageBean.getFeedMessages}"/>
         </h:form>
 
         <h:dataTable value="#{feedMessageBean.list}" var="message">

@@ -9,17 +9,56 @@
     <ui:include src="/WEB-INF/bootstrap.xhtml"/>
 </h:head>
 <h:body>
-    <div class="container">
+    <f:ajax render="@all">
         <ui:include src="/WEB-INF/navbar.xhtml"/>
-        This is feed yes
+        <div class="container">
+            <h2>Feed messages</h2>
+            <div class="row">
+                <div class="col-6">
+                    <f:metadata>
+                        <f:event type="preRenderView" listener="#{userBean.getUsers}"/>
+                    </f:metadata>
+                    <h:form>
+                        <h:dataTable styleClass="table" value="#{userBean.list}" var="users">
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                <h:commandLink styleClass="nav-link text-secondary"
+                                               value="#{users.name} #{users.lastName}"
+                                               action="#{feedMessageBean.getFeed}">
+                                    <f:setPropertyActionListener target="#{feedMessageBean.email}"
+                                                                 value="#{users.email}"/>
+                                </h:commandLink>
+                            </h:column>
 
+                            <h:column>
+                                <f:facet name="header">Email</f:facet>
+                                <h:commandLink styleClass="nav-link mr-auto text-secondary" value="#{users.email}"
+                                               action="#{feedMessageBean.getFeedMessages}">
+                                    <f:setPropertyActionListener target="#{feedMessageBean.email}"
+                                                                 value="#{users.email}"/>
+                                </h:commandLink>
+                            </h:column>
 
+                        </h:dataTable>
+                    </h:form>
+                </div>
+                <div>
+                    <ul class="list-group-flush">
+                        <li class="list-group-item" value="#{feedMessageBean.list}">
+                        </li>
+                    </ul>
+                    <h:dataTable styleClass="table" value="#{feedMessageBean.list}" var="feedMessage">
 
-
-
-
-
-    </div>
-
+                        <h:column>
+                            <f:facet name="header"/>
+                            #{feedMessage.date}
+                            <br/>
+                            #{feedMessage.message}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+    </f:ajax>
 </h:body>
 </html>

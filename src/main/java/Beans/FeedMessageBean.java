@@ -28,6 +28,8 @@ public class FeedMessageBean implements Serializable {
     public void getFeedMessages(){
         getMessageService = new GetFeedMessageService();
         list = getMessageService.getFeedMessages(email);
+        System.out.println(email);
+
     }
 
     public List<FeedMessageViewModel> getList() {
