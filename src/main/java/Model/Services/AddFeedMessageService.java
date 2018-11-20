@@ -8,18 +8,18 @@ import java.io.IOException;
 
 public class AddFeedMessageService {
 
-    public FeedMessageViewModel addFeedMessage(String email1, String Message){
+    public FeedMessageViewModel addFeedMessage(String email, String message){
 
-        String message = "pls work";
-        String email = "kaspe@kth.se";
+        System.out.println(email + " " + message);
 
         try (RequestManager.Request request = RequestManager.request()){
             request.executePost("Http://localhost:8080/writefeedmessage", new FeedMessageObj(message, email));
+            AddFeedMessageResponseObject responseObject = request.response(AddFeedMessageResponseObject.class);
             FeedMessageViewModel m = new FeedMessageViewModel(
-                    request.response(AddFeedMessageResponseObject.class).getName(),
-                    request.response(AddFeedMessageResponseObject.class).getLastName(),
-                    request.response(AddFeedMessageResponseObject.class).getDate(),
-                    request.response(AddFeedMessageResponseObject.class).getMessage());
+                    responseObject.getName(),
+                    responseObject.getLastName(),
+                    responseObject.getDate(),
+                    responseObject.getMessage());
 
             return m;
         } catch (IOException e) {

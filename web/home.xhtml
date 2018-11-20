@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Your feed</title>
+    <ui:include src="/WEB-INF/bootstrap.xhtml"/>
+</h:head>
+<h:body>
+    <f:ajax render="@all">
+        <ui:include src="/WEB-INF/navbar.xhtml"/>
+        <div class="container">
+            <h2>Your feed</h2>
+            <div class="row">
+                <div class="col-6">
+                    <h:form>
+                        <h:inputTextarea styleClass="form-control" value="#{feedMessageBean.message}"/>
+                        <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Share"
+                                         action="#{feedMessageBean.sendFeedMessages(userBean.email)}"/>
+                    </h:form>
+                </div>
+                <div class="col-4">
+                    <f:metadata>
+                        <f:event type="preRenderView" listener="#{feedMessageBean.getFeedMessages(userBean.email)}"/>
+                    </f:metadata>
+                    <h:dataTable styleClass="table" value="#{feedMessageBean.list}" var="message">
+                        <h:column>
+                            <f:facet name="header"/>
+                            #{message.date}
+                            <br/>
+                            #{message.message}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+    </f:ajax>
+</h:body>
+</html>

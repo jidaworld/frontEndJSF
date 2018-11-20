@@ -11,13 +11,13 @@ public class AddDirectMessageService {
     public DirectMessageViewModel AddDirectMessage(String senderEmail, String receiverEmail, String message){
 
         try(RequestManager.Request request = RequestManager.request()){
-            request.executePost("Http://localhost:8080/writedirectmessages", new DirectMessageObject(senderEmail, receiverEmail, message));
+            request.executePost("Http://localhost:8080/writedirectmessage", new DirectMessageObject(senderEmail, receiverEmail, message));
+            AddDirectMessageResponseObject responseObject = request.response(AddDirectMessageResponseObject.class);
             DirectMessageViewModel m = new DirectMessageViewModel(
-                    request.response(AddDirectMessageResponseObject.class).getSenderEmail(),
-                    request.response(AddDirectMessageResponseObject.class).getReceiverEmail(),
-                    request.response(AddDirectMessageResponseObject.class).getMessage(),
-                    request.response(AddDirectMessageResponseObject.class).getDate()
-            );
+                    responseObject.getSenderEmail(),
+                    responseObject.getReceiverEmail(),
+                    responseObject.getMessage(),
+                    responseObject.getDate());
             return m;
         } catch (IOException e) {
             e.printStackTrace();

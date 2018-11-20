@@ -17,7 +17,7 @@ public class UserBean implements Serializable {
 
     private String UserName;
     private String Password;
-    private String Email;
+    private String Email = "kaspe@kth.se";
     private String Name;
     private String LastName;
     private AddUserService addUser;

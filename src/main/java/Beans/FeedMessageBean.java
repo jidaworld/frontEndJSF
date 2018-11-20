@@ -16,20 +16,20 @@ public class FeedMessageBean implements Serializable {
 
     private List<FeedMessageViewModel> list;
     private String message;
-    private String email;
+    private String name;
+    private String lastname;
     private AddFeedMessageService addMessageService;
     private GetFeedMessageService getMessageService;
 
-    public void sendFeedMessages(){
+    public void sendFeedMessages(String email){
         addMessageService = new AddFeedMessageService();
         addMessageService.addFeedMessage(email, message);
+        message = "";
     }
 
-    public void getFeedMessages(){
+    public void getFeedMessages(String email){
         getMessageService = new GetFeedMessageService();
         list = getMessageService.getFeedMessages(email);
-        System.out.println(email);
-
     }
 
     public List<FeedMessageViewModel> getList() {
@@ -48,12 +48,19 @@ public class FeedMessageBean implements Serializable {
         this.message = message;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 }
