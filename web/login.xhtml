@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>JSF 2.0 Hello World</title>
+    <ui:include src="/WEB-INF/bootstrap.xhtml"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <ui:include src="/WEB-INF/navbar.xhtml"/>
+        <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
+        <div class="row">
+            <div class="col-6">
+                <h4>Register a new account</h4>
+            </div>
+            <div class="col-6">
+                <h4>Log in</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-6">
+                    <h:form>
+                        Username
+                        <br></br>
+                        <h:inputText styleClass="form-control" value="#{userBean.userName}"/>
+                        Password
+                        <br></br>
+                        <h:inputSecret styleClass="form-control" value="#{userBean.password}"/>
+                        Email
+                        <br></br>
+                        <h:inputText styleClass="form-control" value="#{userBean.email}"/>
+                        FirstName
+                        <br></br>
+                        <h:inputText styleClass="form-control" value="#{userBean.name}"/>
+                        LastName
+                        <br></br>
+                        <h:inputText styleClass="form-control" value="#{userBean.lastName}"></h:inputText>
+                        <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Register"
+                                         action="#{userBean.addUser}"></h:commandButton>
+                    </h:form>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <h:form>
+                    Username
+                    <br></br>
+                    <h:inputText styleClass="form-control" value="#{userBean.userName}"/>
+                    Password
+                    <br></br>
+                    <h:inputSecret styleClass="form-control" value="#{userBean.password}"/>
+                    <!--Put in login bean button function-->
+                    <div class="text-right">
+                        <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Login"
+                                         action="#{userBean.addUser}"></h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+
+        <h:form>
+            Search Name
+            <h:inputText value="#{userBean.searchName}"></h:inputText>
+            <h:commandButton value="Search" action="#{userBean.getUsers}"></h:commandButton>
+        </h:form>
+        <h:form>
+            add Feed Message
+            <h:inputText value="#{feedMessageBean.email}"></h:inputText> <br></br>
+            <h:inputTextarea value="#{feedMessageBean.message}"></h:inputTextarea> <br></br>
+            <h:commandButton value="Post" action="#{feedMessageBean.sendFeedMessages}"></h:commandButton>
+        </h:form>
+
+        <h:form>
+            <h:commandButton value="Get" action="#{feedMessageBean.getFeedMessages}"></h:commandButton>
+        </h:form>
+
+        <h:dataTable value="#{feedMessageBean.list}" var="message">
+            <h:column>
+                <h:link value="#{message.name} " outcome="message">
+                </h:link>
+                <h:link value="#{message.lastname}" outcome="message">
+                </h:link>
+                <h:link value="#{message.date}" outcome="message">
+                </h:link>
+                <h:link value="#{message.message}" outcome="message">
+                </h:link>
+            </h:column>
+        </h:dataTable>
+    </div>
+</h:body>
+</html>
