@@ -10,8 +10,6 @@ public class AddFeedMessageService {
 
     public FeedMessageViewModel addFeedMessage(String email, String message){
 
-        System.out.println(email + " " + message);
-
         try (RequestManager.Request request = RequestManager.request()){
             request.executePost("Http://localhost:8080/writefeedmessage", new FeedMessageObj(message, email));
             AddFeedMessageResponseObject responseObject = request.response(AddFeedMessageResponseObject.class);
@@ -20,7 +18,6 @@ public class AddFeedMessageService {
                     responseObject.getLastName(),
                     responseObject.getDate(),
                     responseObject.getMessage());
-
             return m;
         } catch (IOException e) {
             e.printStackTrace();

@@ -9,8 +9,64 @@
     <ui:include src="/WEB-INF/bootstrap.xhtml"/>
 </h:head>
 <h:body>
-    <div class="container">
+    <f:ajax render="@all">
         <ui:include src="/WEB-INF/navbar.xhtml"/>
-    </div>
+        <div class="container">
+            <h2>Conversations</h2>
+            <div class="row">
+                <div class="col-6">
+                    <f:metadata>
+                        <f:event type="preRenderView" listener="#{userBean.getUsers}"/>
+                    </f:metadata>
+                    <h:form>
+                        <h:dataTable styleClass="table" value="#{userBean.list}" var="users">
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                <h:commandLink styleClass="nav-link text-secondary"
+                                               value="#{users.name} #{users.lastName}"
+                                               action="#{directMessageBean.getDirectMessages}">
+                                    <f:setPropertyActionListener value="#{users.email}" target="#{directMessageBean.receiverEmail}"/>
+                                    <f:setPropertyActionListener value="#{userBean.email}" target="#{directMessageBean.senderEmail}"/>
+                                    <f:setPropertyActionListener value="#{users.name}" target="#{directMessageBean.receiverName}"/>
+                                </h:commandLink>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Email</f:facet>
+                                <h:commandLink styleClass="nav-link mr-auto text-secondary" value="#{users.email}"
+                                               action="#{directMessageBean.getDirectMessages}">
+                                    <f:setPropertyActionListener value="#{users.email}" target="#{directMessageBean.receiverEmail}"/>
+                                    <f:setPropertyActionListener value="#{userBean.email}" target="#{directMessageBean.senderEmail}"/>
+                                    <f:setPropertyActionListener value="#{users.name}" target="#{directMessageBean.receiverName}"/>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+                <div class="col-6">
+                    Conversation with #{directMessageBean.receiverName}
+                    <div style="height: 400px;overflow: auto">
+                    <h:dataTable styleClass="table" value="#{directMessageBean.list}" var="message">
+                        <h:column>
+                            <f:facet name="header"/>
+                            #{message.senderName}
+                            <br/>
+                            #{message.date}
+                            <br/>
+                            #{message.message}
+                        </h:column>
+                    </h:dataTable>
+                    </div>
+                    <h:form>
+                        <h:inputTextarea styleClass="form-control" value="#{directMessageBean.message}"/>
+                        <div class="text-right">
+                            <h:commandButton styleClass="btn btn-primary" style="margin-top: 8px" value="Send"
+                            action="#{directMessageBean.sendDirectMessage}"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </f:ajax>
 </h:body>
 </html>

@@ -8,14 +8,14 @@ public class AddDirectMessageResponseObject {
 
     private String message;
     private Date date;
-    private String senderEmail;
-    private String receiverEmail;
+    private String senderName;
+    private String receiverName;
 
-    public AddDirectMessageResponseObject(DirectMessageViewModel model) {
-        this.message = model.getMessage();
-        this.date = model.getDate();
-        this.senderEmail = model.getSenderEmail();
-        this.receiverEmail = model.getReceiverEmail();
+    public AddDirectMessageResponseObject(String message, Date date, String senderName, String receiverName) {
+        this.message = message;
+        this.date = date;
+        this.senderName = senderName;
+        this.receiverName = receiverName;
     }
 
     public String getMessage() {
@@ -26,11 +26,11 @@ public class AddDirectMessageResponseObject {
         return date;
     }
 
-    public String getSenderEmail() {
-        return senderEmail;
+    public String getSenderName() {
+        return senderName;
     }
 
-    public String getReceiverEmail() {
-        return receiverEmail;
+    public String getReceiverName() {
+        return receiverName;
     }
 }

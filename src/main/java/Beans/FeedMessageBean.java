@@ -6,6 +6,7 @@ import Model.ViewModels.FeedMessageViewModel;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,13 +22,17 @@ public class FeedMessageBean implements Serializable {
     private AddFeedMessageService addMessageService;
     private GetFeedMessageService getMessageService;
 
-    public void sendFeedMessages(String email){
+    public void sendFeedMessages(String email) {
         addMessageService = new AddFeedMessageService();
-        addMessageService.addFeedMessage(email, message);
-        message = "";
+        FeedMessageViewModel m = addMessageService.addFeedMessage(email, message);
+        if (m != null) {
+            list.add(m);
+            message = "";
+        }
+
     }
 
-    public void getFeedMessages(String email){
+    public void getFeedMessages(String email) {
         getMessageService = new GetFeedMessageService();
         list = getMessageService.getFeedMessages(email);
     }
@@ -63,4 +68,13 @@ public class FeedMessageBean implements Serializable {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    public void clearList() {
+        if (!FacesContext.getCurrentInstance().getPartialViewContext().isAjaxRequest()) {
+            this.list = null;
+            this.name = null;
+            this.lastname = null;
+        }
+    }
+
 }

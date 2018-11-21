@@ -16,13 +16,19 @@ public class DirectMessageBean implements Serializable {
     private List<DirectMessageViewModel> list;
     private String senderEmail;
     private String receiverEmail;
+    private String receiverName;
     private String message;
     private AddDirectMessageService addMessageService;
     private GetDirectMessageService getMessageService;
 
     public void sendDirectMessage(){
         addMessageService = new AddDirectMessageService();
-        list.add(addMessageService.AddDirectMessage(senderEmail, receiverEmail, message));
+        DirectMessageViewModel m = addMessageService.AddDirectMessage(senderEmail, receiverEmail, message);
+        if(m != null){
+            list.add(m);
+            message = "";
+        }
+
     }
 
     public void getDirectMessages(){
@@ -60,5 +66,13 @@ public class DirectMessageBean implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
     }
 }

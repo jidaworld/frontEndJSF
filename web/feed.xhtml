@@ -9,15 +9,15 @@
     <ui:include src="/WEB-INF/bootstrap.xhtml"/>
 </h:head>
 <h:body>
-    <f:ajax render="@all">
-        <ui:include src="/WEB-INF/navbar.xhtml"/>
-        <div class="container">
-            <h2>Feed messages</h2>
-            <div class="row">
+
+    <ui:include src="/WEB-INF/navbar.xhtml"/>
+    <div class="container">
+        <h2>Feed messages</h2>
+        <div class="row">
+            <f:ajax render="@all">
                 <div class="col-6">
-                    <f:metadata>
                         <f:event type="preRenderView" listener="#{userBean.getUsers}"/>
-                    </f:metadata>
+                        <f:event type="preRenderView" listener="#{feedMessageBean.clearList}"/>
                     <h:form>
                         <h:dataTable styleClass="table" value="#{userBean.list}" var="users">
                             <h:column>
@@ -25,17 +25,20 @@
                                 <h:commandLink styleClass="nav-link text-secondary"
                                                value="#{users.name} #{users.lastName}"
                                                action="#{feedMessageBean.getFeedMessages(users.email)}">
-                                    <f:setPropertyActionListener value="#{users.name}" target="#{feedMessageBean.name}"/>
-                                    <f:setPropertyActionListener value="#{users.lastName}" target="#{feedMessageBean.lastname}"/>
+                                    <f:setPropertyActionListener value="#{users.name}"
+                                                                 target="#{feedMessageBean.name}"/>
+                                    <f:setPropertyActionListener value="#{users.lastName}"
+                                                                 target="#{feedMessageBean.lastname}"/>
                                 </h:commandLink>
                             </h:column>
-
                             <h:column>
                                 <f:facet name="header">Email</f:facet>
                                 <h:commandLink styleClass="nav-link mr-auto text-secondary" value="#{users.email}"
                                                action="#{feedMessageBean.getFeedMessages(users.email)}">
-                                    <f:setPropertyActionListener value="#{users.name}" target="#{feedMessageBean.name}"/>
-                                    <f:setPropertyActionListener value="#{users.lastName}" target="#{feedMessageBean.lastname}"/>
+                                    <f:setPropertyActionListener value="#{users.name}"
+                                                                 target="#{feedMessageBean.name}"/>
+                                    <f:setPropertyActionListener value="#{users.lastName}"
+                                                                 target="#{feedMessageBean.lastname}"/>
                                 </h:commandLink>
                             </h:column>
 
@@ -53,8 +56,8 @@
                         </h:column>
                     </h:dataTable>
                 </div>
-            </div>
+            </f:ajax>
         </div>
-    </f:ajax>
+    </div>
 </h:body>
 </html>

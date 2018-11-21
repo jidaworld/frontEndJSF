@@ -32,7 +32,7 @@ public class UserBean implements Serializable {
 
     public void getUsers(){
         getUsers = new GetUsersService();
-        setList(getUsers.getUsers(searchName));
+        setList(getUsers.getUsers(Email));
     }
 
     public String getSearchName() {

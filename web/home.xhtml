@@ -24,17 +24,20 @@
                     </h:form>
                 </div>
                 <div class="col-4">
-                    <f:metadata>
-                        <f:event type="preRenderView" listener="#{feedMessageBean.getFeedMessages(userBean.email)}"/>
-                    </f:metadata>
-                    <h:dataTable styleClass="table" value="#{feedMessageBean.list}" var="message">
-                        <h:column>
-                            <f:facet name="header"/>
-                            #{message.date}
-                            <br/>
-                            #{message.message}
-                        </h:column>
-                    </h:dataTable>
+                    <div style="height: 500px; overflow: auto">
+                        <f:metadata>
+                            <f:event type="preRenderView"
+                                     listener="#{feedMessageBean.getFeedMessages(userBean.email)}"/>
+                        </f:metadata>
+                        <h:dataTable styleClass="table" value="#{feedMessageBean.list}" var="message">
+                            <h:column>
+                                <f:facet name="header"/>
+                                #{message.date}
+                                <br/>
+                                #{message.message}
+                            </h:column>
+                        </h:dataTable>
+                    </div>
                 </div>
             </div>
         </div>
