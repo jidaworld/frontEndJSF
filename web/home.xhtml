@@ -19,7 +19,7 @@
                         <h:inputTextarea styleClass="form-control" value="#{feedMessageBean.message}"/>
                         <div class="text-right">
                             <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Share"
-                                             action="#{feedMessageBean.sendFeedMessages(userBean.email)}"/>
+                                             action="#{feedMessageBean.sendFeedMessages(loginBean.email)}"/>
                         </div>
                     </h:form>
                 </div>
@@ -27,7 +27,7 @@
                     <div style="height: 500px; overflow: auto">
                         <f:metadata>
                             <f:event type="preRenderView"
-                                     listener="#{feedMessageBean.getFeedMessages(userBean.email)}"/>
+                                     listener="#{feedMessageBean.getFeedMessages(loginBean.email)}"/>
                         </f:metadata>
                         <h:dataTable styleClass="table" value="#{feedMessageBean.list}" var="message">
                             <h:column>

@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-6">
                     <f:metadata>
-                        <f:event type="preRenderView" listener="#{userBean.getUsers}"/>
+                        <f:event type="preRenderView" listener="#{userBean.getUsers(loginBean.email)}"/>
                     </f:metadata>
                     <h:form>
                         <h:dataTable styleClass="table" value="#{userBean.list}" var="users">
@@ -36,7 +36,7 @@
                                 <h:commandLink styleClass="nav-link mr-auto text-secondary" value="#{users.email}"
                                                action="#{directMessageBean.getDirectMessages}">
                                     <f:setPropertyActionListener value="#{users.email}" target="#{directMessageBean.receiverEmail}"/>
-                                    <f:setPropertyActionListener value="#{userBean.email}" target="#{directMessageBean.senderEmail}"/>
+                                    <f:setPropertyActionListener value="#{loginBean.email}" target="#{directMessageBean.senderEmail}"/>
                                     <f:setPropertyActionListener value="#{users.name}" target="#{directMessageBean.receiverName}"/>
                                 </h:commandLink>
                             </h:column>

@@ -17,12 +17,11 @@ public class UserBean implements Serializable {
 
     private String UserName;
     private String Password;
-    private String Email = "kaspe@kth.se";
+    private String Email;
     private String Name;
     private String LastName;
     private AddUserService addUser;
     private GetUsersService getUsers;
-    private String searchName = "";
     private List<UserViewModel> list;
 
     public void addUser() {
@@ -30,17 +29,9 @@ public class UserBean implements Serializable {
         addUser.addUser(UserName, Password, Email, Name, LastName);
     }
 
-    public void getUsers(){
+    public void getUsers(String email){
         getUsers = new GetUsersService();
-        setList(getUsers.getUsers(Email));
-    }
-
-    public String getSearchName() {
-        return searchName;
-    }
-
-    public void setSearchName(String searchName) {
-        this.searchName = searchName;
+        setList(getUsers.getUsers(email));
     }
 
     public List<UserViewModel> getList() {

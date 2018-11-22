@@ -16,7 +16,7 @@
         <div class="row">
             <f:ajax render="@all">
                 <div class="col-6">
-                        <f:event type="preRenderView" listener="#{userBean.getUsers}"/>
+                        <f:event type="preRenderView" listener="#{userBean.getUsers(loginBean.email)}"/>
                         <f:event type="preRenderView" listener="#{feedMessageBean.clearList}"/>
                     <h:form>
                         <h:dataTable styleClass="table" value="#{userBean.list}" var="users">
