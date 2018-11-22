@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class AddDirectMessageService {
 
-    public DirectMessageViewModel AddDirectMessage(String senderEmail, String receiverEmail, String message){
+    public DirectMessageViewModel AddDirectMessage(String senderEmail, String receiverEmail, String message) {
 
-        try(RequestManager.Request request = RequestManager.request()){
+        try (RequestManager.Request request = RequestManager.request()) {
             request.executePost("Http://localhost:8080/writedirectmessage", new DirectMessageObject(senderEmail, receiverEmail, message));
             AddDirectMessageResponseObject responseObject = request.response(AddDirectMessageResponseObject.class);
             DirectMessageViewModel m = new DirectMessageViewModel(
@@ -18,11 +18,12 @@ public class AddDirectMessageService {
                     responseObject.getReceiverName(),
                     responseObject.getMessage(),
                     responseObject.getDate());
-            return m;
+            if (m.getDate() != null) {
+                return m;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 

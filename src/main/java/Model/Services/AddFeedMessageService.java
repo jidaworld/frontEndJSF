@@ -8,9 +8,9 @@ import java.io.IOException;
 
 public class AddFeedMessageService {
 
-    public FeedMessageViewModel addFeedMessage(String email, String message){
+    public FeedMessageViewModel addFeedMessage(String email, String message) {
 
-        try (RequestManager.Request request = RequestManager.request()){
+        try (RequestManager.Request request = RequestManager.request()) {
             request.executePost("Http://localhost:8080/writefeedmessage", new FeedMessageObj(message, email));
             AddFeedMessageResponseObject responseObject = request.response(AddFeedMessageResponseObject.class);
             FeedMessageViewModel m = new FeedMessageViewModel(
@@ -18,14 +18,16 @@ public class AddFeedMessageService {
                     responseObject.getLastName(),
                     responseObject.getDate(),
                     responseObject.getMessage());
-            return m;
+            if (m.getName() != null) {
+                return m;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private static class FeedMessageObj{
+    private static class FeedMessageObj {
 
         private String message;
         private String email;
