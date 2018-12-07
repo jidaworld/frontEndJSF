@@ -12,20 +12,20 @@
                     <li>
                         <a class="navbar-brand" href="/home.xhtml">YAMATO</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="/inbox.xhtml">Inbox</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="/feed.xhtml">Feed</a>
-                    </li>
-                    <li>
-                        <c:if test="#{loginBean.email != null}">
+                    <c:if test="#{loginBean.email != null}">
+                        <li>
+                            <a class="nav-link" href="/inbox.xhtml">Inbox</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/feed.xhtml">Feed</a>
+                        </li>
+                        <li>
                             <h:form>
-                                <h:commandLink styleClass="nav-link" action="#{loginBean.logout}">Log out</h:commandLink>
+                                <h:commandLink styleClass="nav-link"
+                                               action="#{loginBean.logout}">Log out</h:commandLink>
                             </h:form>
-                        </c:if>
-
-                    </li>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>
