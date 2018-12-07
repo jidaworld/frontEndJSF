@@ -10,7 +10,7 @@ public class LoginService {
     public boolean loginUser(String email, String password){
 
         try (RequestManager.Request request = RequestManager.request()){
-            request.executePost("http://localhost:8080/login", new LoginObj(email, password));
+            request.executePost("http://192.168.99.100:8081/login", new LoginObj(email, password));
             return request.response(LoginResponseObject.class).isSuccessful();
         } catch (IOException e) {
             e.printStackTrace();

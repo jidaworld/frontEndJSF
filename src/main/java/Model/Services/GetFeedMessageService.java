@@ -12,7 +12,7 @@ public class GetFeedMessageService {
     public List<FeedMessageViewModel> getFeedMessages(String email){
 
         try(RequestManager.Request request = RequestManager.request()){
-            request.executePost("Http://localhost:8080/getfeedmessages", new GetMessagesObj(email));
+            request.executePost("http://192.168.99.100:8081/getfeedmessages", new GetMessagesObj(email));
             return request.response(GetFeedMessageResponseObject.class).getList();
         } catch (IOException e) {
             e.printStackTrace();

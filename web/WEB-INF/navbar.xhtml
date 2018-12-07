@@ -12,7 +12,7 @@
                     <li>
                         <a class="navbar-brand" href="/home.xhtml">YAMATO</a>
                     </li>
-                    <c:if test="#{loginBean.email != null}">
+                    <c:if test="#{loginBean.loggedIn}">
                         <li>
                             <a class="nav-link" href="/inbox.xhtml">Inbox</a>
                         </li>

@@ -11,7 +11,7 @@ public class AddFeedMessageService {
     public FeedMessageViewModel addFeedMessage(String email, String message){
 
         try (RequestManager.Request request = RequestManager.request()){
-            request.executePost("Http://localhost:8080/writefeedmessage", new FeedMessageObj(message, email));
+            request.executePost("http://192.168.99.100:8081/writefeedmessage", new FeedMessageObj(message, email));
             AddFeedMessageResponseObject responseObject = request.response(AddFeedMessageResponseObject.class);
             FeedMessageViewModel m = new FeedMessageViewModel(
                     responseObject.getName(),

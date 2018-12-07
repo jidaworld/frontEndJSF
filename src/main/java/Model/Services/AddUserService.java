@@ -10,7 +10,7 @@ public class AddUserService {
     public void addUser(String UserName, String Password, String Email, String Name, String LastName){
 
         try(RequestManager.Request request = RequestManager.request()){
-            request.executePost("http://localhost:8080/adduser", new AddUserObj(UserName, Password, Email, Name, LastName));
+            request.executePost("http://192.168.99.100:8081/adduser", new AddUserObj(UserName, Password, Email, Name, LastName));
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -11,7 +11,7 @@ public class AddDirectMessageService {
     public DirectMessageViewModel AddDirectMessage(String senderEmail, String receiverEmail, String message){
 
         try(RequestManager.Request request = RequestManager.request()){
-            request.executePost("Http://localhost:8080/writedirectmessage", new DirectMessageObject(senderEmail, receiverEmail, message));
+            request.executePost("http://192.168.99.100:8081/writedirectmessage", new DirectMessageObject(senderEmail, receiverEmail, message));
             AddDirectMessageResponseObject responseObject = request.response(AddDirectMessageResponseObject.class);
             DirectMessageViewModel m = new DirectMessageViewModel(
                     responseObject.getSenderName(),

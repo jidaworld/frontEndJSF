@@ -16,11 +16,13 @@ public class LoginBean implements Serializable {
     private String email;
     private String password;
     private LoginService loginService = new LoginService();
+    private boolean loggedIn = false;
 
     public void login(){
         FacesContext context = FacesContext.getCurrentInstance();
         if(loginService.loginUser(email, password)){
             context.getExternalContext().getSessionMap().put("user", email);
+            loggedIn = true;
             try{
                 context.getExternalContext().redirect("/home.xhtml");
             } catch (IOException e) {
@@ -34,6 +36,7 @@ public class LoginBean implements Serializable {
     public void logout(){
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().invalidateSession();
+        loggedIn = false;
         try {
             context.getExternalContext().redirect("login.xhtml");
         } catch (IOException e) {
@@ -41,6 +44,9 @@ public class LoginBean implements Serializable {
         }
     }
 
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
     public String getEmail() {
         return email;
     }

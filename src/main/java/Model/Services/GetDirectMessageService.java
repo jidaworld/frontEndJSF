@@ -12,7 +12,7 @@ public class GetDirectMessageService {
     public List<DirectMessageViewModel> GetDirectMessages(String senderEmail, String receiverEmail){
 
         try(RequestManager.Request request = RequestManager.request()){
-            request.executePost("Http://localhost:8080/getdirectmessages", new GetMessageObj(senderEmail, receiverEmail));
+            request.executePost("http://192.168.99.100:8081/getdirectmessages", new GetMessageObj(senderEmail, receiverEmail));
             return request.response(GetDirectMessageResponseObject.class).getList();
         } catch (IOException e) {
             e.printStackTrace();

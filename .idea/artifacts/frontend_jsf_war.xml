@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="frontend_jsf:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/frontend_jsf_war</output-path>
+    <root id="archive" name="frontend_jsf_war.war">
+      <element id="artifact" artifact-name="frontend_jsf:war exploded" />
+    </root>
+  </artifact>
+</component>
