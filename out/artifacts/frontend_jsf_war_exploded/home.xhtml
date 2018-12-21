@@ -10,8 +10,8 @@
 </h:head>
 <h:body>
     <f:ajax render="@all">
-        <ui:include src="/WEB-INF/navbar.xhtml"/>
         <div class="container">
+            <ui:include src="/WEB-INF/navbar.xhtml"/>
             <h2>Your feed</h2>
             <div class="row">
                 <div class="col-6">
@@ -28,6 +28,8 @@
                         <f:metadata>
                             <f:event type="preRenderView"
                                      listener="#{feedMessageBean.getFeedMessages(loginBean.email)}"/>
+                            <f:event type="preRenderView"
+                                     listener="#{graphBean.setEmail(loginBean.email)}"/>
                         </f:metadata>
                         <h:dataTable styleClass="table" value="#{feedMessageBean.list}" var="message">
                             <h:column>
@@ -37,7 +39,9 @@
                                 #{message.message}
                             </h:column>
                         </h:dataTable>
+
                     </div>
+
                 </div>
             </div>
         </div>

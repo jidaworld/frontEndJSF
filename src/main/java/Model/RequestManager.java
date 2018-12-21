@@ -1,6 +1,7 @@
 package Model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -47,7 +48,6 @@ public class RequestManager {
 
         public int executePost(String dir, Object body) throws IOException {
             HttpPost post = new HttpPost(dir);
-
             String json = gson.toJson(body);
             HttpEntity stringEntity = new StringEntity(json, ContentType.APPLICATION_JSON);
             post.setEntity(stringEntity);

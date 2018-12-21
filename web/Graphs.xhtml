@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Graphs</title>
+    <ui:include src="/WEB-INF/bootstrap.xhtml"/>
+</h:head>
+<body>
+<div class="container">
+    <ui:include src="/WEB-INF/navbar.xhtml"/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="col-6">
+                <f:metadata>
+                    <f:event type="preRenderView" listener="#{graphBean.setEmail(loginBean.email)}"/>
+                </f:metadata>
+                <h:form>
+                    Value
+                    <br/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[0]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[1]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[2]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[3]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[4]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[5]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[6]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[7]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[8]}"/>
+                    <h:inputText styleClass="form-control" value="#{graphBean.yValue[9]}"/>
+
+
+
+                    <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Send"
+                                     action="#{graphBean.AddGraph}"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandButton styleClass="btn btn-primary" style="margin-top:8px" value="Get Graphs"
+                                     action="#{graphBean.getMyGraphs}"/>
+                </h:form>
+
+                <iframe width="200" height="200" src="http://localhost:8085/api/getgraph"/>
+            </div>
+        </div>
+</div>
+
+
+</div>
+
+</body>
+</html>
